@@ -10,11 +10,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
+
 import java.util.List;
 
-import static java.util.concurrent.TimeUnit.DAYS;
+
 
 @Repository
 public class ContractRepo {
@@ -52,12 +51,13 @@ public class ContractRepo {
         return contract;
     }
 
-    public Contract editContract(int id, Contract contract){
+    public Contract editContract(int id, Contract contract, MotorHome motorHome){
         String sql = "UPDATE contract SET employeeID = ?, customerID = ?, motorHomeID = ?, extraEquipment = ?, " +
-                "pickUp = ?, dropOff = ?, startDate = ?, endDate = ? Where motorHomeID = ?";
+                "pickUp = ?, dropOff = ?, startDate = ?, endDate = ?, totalPrice = ? Where motorHomeID = ?";
+
         template.update(sql, contract.getEmployeeID(), contract.getCustomerID(), contract.getMotorHomeID(),
                 contract.getExtraEquipment(), contract.getPickUpKM(), contract.getDropOffKM(),
-                contract.getStartDate(), contract.getEndDate(), contract.getMotorHomeID());
+                contract.getStartDate(), contract.getEndDate(),  contract.getTotalPrice(motorHome.getPricePerDay()), contract.getMotorHomeID());
         return null;
     }
 

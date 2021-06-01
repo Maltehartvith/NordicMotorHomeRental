@@ -38,7 +38,6 @@
         <tr th:each="MotorHome: ${MotorHomes}" >
 
         <td th:text="${MotorHome.motorHomeID}"></td>
-        <td th:text="${MotorHome.repairID}"></td>
         <td th:text="${MotorHome.brand}"></td>
         <td th:text="${MotorHome.model}"></td>
         <td th:text="${MotorHome.drivenKM}"></td>
@@ -60,6 +59,7 @@
     <thead>
     <tr>
         <th> Repair ID </th>
+        <th> Motor home ID </th>
         <th> Note </th>
         <th> Price </th>
         <th> Fuel level</th>
@@ -72,8 +72,9 @@
         <tr th:each="Repairs: ${repair}">
 
             <td th:text="${Repairs.repairID}"></td>
+            <td th:text="${Repairs.motorHomeID}"></td>
             <td th:text="${Repairs.note}"></td>
-            <td th:text="${Repairs.price}"></td>
+            <td th:text="${Repairs.repairPrice}"></td>
             <td th:text="${Repairs.fuelLevelLow}"></td>
 
             <td>
